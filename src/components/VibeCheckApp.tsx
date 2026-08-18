@@ -99,7 +99,7 @@ export default function VibeCheckApp() {
 
       {status === "success" && summary && subreddit && (
         <div className="flex flex-col gap-10">
-          <div className="flex flex-col items-center gap-6 rounded-lg border hairline bg-ink-raised/40 p-8 scanlines sm:flex-row sm:justify-between">
+          <div className="flex flex-col items-center gap-6 rounded-lg border hairline bg-ink-raised/40 p-8 sm:flex-row sm:justify-between">
             <VibeGauge summary={summary} loading={false} />
             <div className="flex w-full max-w-sm flex-col gap-6">
               <div>

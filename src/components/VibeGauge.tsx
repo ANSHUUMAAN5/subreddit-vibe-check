@@ -125,7 +125,6 @@ export default function VibeGauge({ summary, loading }: VibeGaugeProps) {
           strokeLinecap="round"
           strokeDasharray={`0 ${CIRCUMFERENCE}`}
           transform={`rotate(${ROTATION} ${CENTER} ${CENTER})`}
-          style={{ filter: "drop-shadow(0 0 8px currentColor)" }}
         />
       </svg>
 
