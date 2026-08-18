@@ -29,7 +29,7 @@ export default function LoadingState() {
           <div
             key={i}
             data-scan-bar
-            className="w-1.5 h-full origin-bottom rounded-sm bg-phosphor/70"
+            className="w-1.5 h-full origin-bottom rounded-sm bg-accent/70"
           />
         ))}
       </div>

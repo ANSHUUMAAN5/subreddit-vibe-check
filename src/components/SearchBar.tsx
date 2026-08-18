@@ -22,8 +22,8 @@ export default function SearchBar({ onSubmit, loading, currentSubreddit }: Searc
   return (
     <div className="flex flex-col gap-3">
       <form onSubmit={handleSubmit} className="flex flex-col items-stretch gap-2 sm:flex-row">
-        <div className="flex flex-1 items-center gap-2 rounded-md border hairline bg-ink-raised px-4 py-3 focus-within:border-phosphor/60 transition-colors">
-          <span className="font-mono text-phosphor text-sm select-none">r/</span>
+        <div className="flex flex-1 items-center gap-2 rounded-md border hairline bg-ink-raised px-4 py-3 focus-within:border-accent/60 transition-colors">
+          <span className="font-mono text-accent text-sm select-none">r/</span>
           <input
             value={value}
             onChange={(e) => setValue(e.target.value)}
@@ -32,12 +32,12 @@ export default function SearchBar({ onSubmit, loading, currentSubreddit }: Searc
             autoComplete="off"
             spellCheck={false}
           />
-          <span className="h-4 w-[2px] bg-phosphor animate-blink" />
+          <span className="h-4 w-[2px] bg-accent animate-blink" />
         </div>
         <button
           type="submit"
           disabled={loading || !value.trim()}
-          className="whitespace-nowrap rounded-md border hairline-strong bg-phosphor px-6 py-3 font-mono text-xs font-semibold uppercase tracking-widest text-ink transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+          className="whitespace-nowrap rounded-md border hairline-strong bg-accent px-6 py-3 font-mono text-xs font-semibold uppercase tracking-widest text-ink transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
         >
           {loading ? "Scanning…" : "Check Vibe"}
         </button>
@@ -51,8 +51,8 @@ export default function SearchBar({ onSubmit, loading, currentSubreddit }: Searc
             type="button"
             onClick={() => onSubmit(name)}
             disabled={loading}
-            className={`rounded-full border hairline px-3 py-1 font-mono text-[11px] transition-colors hover:border-phosphor/60 hover:text-phosphor disabled:opacity-40 ${
-              currentSubreddit === name ? "border-phosphor/60 text-phosphor" : "text-paper-dim"
+            className={`rounded-full border hairline px-3 py-1 font-mono text-[11px] transition-colors hover:border-accent/60 hover:text-accent disabled:opacity-40 ${
+              currentSubreddit === name ? "border-accent/60 text-accent" : "text-paper-dim"
             }`}
           >
             r/{name}

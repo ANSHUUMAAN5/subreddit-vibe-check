@@ -69,7 +69,7 @@ export default function VibeCheckApp() {
     <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-10 px-6 py-14 sm:px-10">
       <div ref={heroRef} className="flex flex-col gap-4">
         <div data-hero-item className="flex items-center gap-3">
-          <span className="h-2 w-2 rounded-full bg-phosphor animate-blink" />
+          <span className="h-2 w-2 rounded-full bg-accent animate-blink" />
           <span className="font-mono text-[11px] tracking-[0.3em] uppercase text-paper-dimmer">
             Live Sentiment Instrument
           </span>
@@ -80,7 +80,7 @@ export default function VibeCheckApp() {
         >
           The Subreddit
           <br />
-          <span className="text-phosphor">Vibe Check.</span>
+          <span className="text-accent">Vibe Check.</span>
         </h1>
         <p data-hero-item className="max-w-lg text-sm text-paper-dim">
           Point it at any subreddit and it reads the emotional temperature of the top 50 hot

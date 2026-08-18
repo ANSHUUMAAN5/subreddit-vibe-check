@@ -1,19 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #12130f;
-  --ink-raised: #181a15;
-  --ink-raised-2: #1e211b;
-  --hairline: rgba(232, 229, 218, 0.08);
-  --hairline-strong: rgba(232, 229, 218, 0.16);
-  --paper: #e8e5da;
-  --paper-dim: #93917f;
-  --paper-dimmer: #656256;
-  --phosphor: #8fb389;
-  --phosphor-dim: #6f9469;
-  --coral: #c17f63;
-  --coral-dim: #9c6249;
-  --amber: #c7a25c;
+  --ink: #15120d;
+  --ink-raised: #1c1811;
+  --ink-raised-2: #241f16;
+  --hairline: rgba(237, 227, 204, 0.09);
+  --hairline-strong: rgba(237, 227, 204, 0.2);
+  --paper: #f3ead9;
+  --paper-dim: #a39a86;
+  --paper-dimmer: #726a59;
+  --accent: #e0a83f;
+  --accent-dim: #b3832a;
+  --phosphor: #3fae72;
+  --phosphor-dim: #2f8a5a;
+  --coral: #d1553f;
+  --coral-dim: #a8402e;
+  --amber: #e0a83f;
 }
 
 @theme inline {
@@ -25,6 +27,8 @@
   --color-paper: var(--paper);
   --color-paper-dim: var(--paper-dim);
   --color-paper-dimmer: var(--paper-dimmer);
+  --color-accent: var(--accent);
+  --color-accent-dim: var(--accent-dim);
   --color-phosphor: var(--phosphor);
   --color-phosphor-dim: var(--phosphor-dim);
   --color-coral: var(--coral);
@@ -50,23 +54,20 @@ body {
   min-height: 100%;
 }
 
-/* Soft vignette — subtle depth, no grain or scanline texture */
-body::after {
+/* Soft warm glow from the upper-left + gentle vignette — atmosphere without grain/scanline gimmicks */
+body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 49;
   pointer-events: none;
-  background: radial-gradient(
-    ellipse at 50% 0%,
-    transparent 0%,
-    transparent 65%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
+  background:
+    radial-gradient(ellipse 900px 600px at 10% -10%, rgba(224, 168, 63, 0.1), transparent 60%),
+    radial-gradient(ellipse at 50% 0%, transparent 0%, transparent 65%, rgba(0, 0, 0, 0.32) 100%);
 }
 
 ::selection {
-  background: var(--phosphor);
+  background: var(--accent);
   color: var(--ink);
 }
 

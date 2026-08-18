@@ -31,7 +31,7 @@ export default function PostRow({ result, rank }: { result: SentimentResult; ran
       </span>
 
       <div className="min-w-0">
-        <p className="truncate text-[14px] text-paper group-hover:text-phosphor transition-colors">
+        <p className="truncate text-[14px] text-paper group-hover:text-accent transition-colors">
           {result.post.title}
         </p>
         <p className="mt-1 flex items-center gap-3 font-mono text-[11px] text-paper-dimmer">
