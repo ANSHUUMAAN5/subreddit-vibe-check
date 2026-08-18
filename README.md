@@ -3,8 +3,6 @@
 Point it at any subreddit and it reads the emotional temperature of the top 50
 "Hot" posts right now — scored, sorted, and rendered live in the browser.
 
-Built for the SportsOrca Full Stack Developer Internship take-home.
-
 ## What it does
 
 1. **Fetch** — a server route (`/api/reddit`) fetches the top 50 hot posts from
