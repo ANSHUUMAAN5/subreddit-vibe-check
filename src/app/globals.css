@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0c0e0a;
+  --ink-raised: #14170f;
+  --ink-raised-2: #191d13;
+  --hairline: rgba(240, 237, 222, 0.1);
+  --hairline-strong: rgba(240, 237, 222, 0.22);
+  --paper: #f0ede2;
+  --paper-dim: #9a9a8c;
+  --paper-dimmer: #6c6c60;
+  --phosphor: #c3f53c;
+  --phosphor-dim: #8fb82c;
+  --coral: #ff6a49;
+  --coral-dim: #b8492f;
+  --amber: #f2b84b;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-ink-raised-2: var(--ink-raised-2);
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-paper-dimmer: var(--paper-dimmer);
+  --color-phosphor: var(--phosphor);
+  --color-phosphor-dim: var(--phosphor-dim);
+  --color-coral: var(--coral);
+  --color-coral-dim: var(--coral-dim);
+  --color-amber: var(--amber);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  position: relative;
+  min-height: 100%;
+}
+
+/* Fixed grain + vignette overlay for instrument-panel texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    transparent 0%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+::selection {
+  background: var(--phosphor);
+  color: var(--ink);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink-raised-2);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hairline-strong);
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+.hairline {
+  border-color: var(--hairline);
+}
+
+.scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(240, 237, 222, 0.035) 0px,
+    rgba(240, 237, 222, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.15; }
+}
+.animate-blink {
+  animation: blink 1.6s ease-in-out infinite;
+}
