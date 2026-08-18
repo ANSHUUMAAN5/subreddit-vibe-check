@@ -1,5 +1,7 @@
 # The Subreddit Vibe Check
 
+**Live:** [subreddit-vibe-check-one.vercel.app](https://subreddit-vibe-check-one.vercel.app)
+
 Point it at any subreddit and it reads the emotional temperature of the top 50
 "Hot" posts right now — scored, sorted, and rendered live in the browser.
 
