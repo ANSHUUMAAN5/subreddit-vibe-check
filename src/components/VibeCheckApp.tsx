@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { analyzeTitles, summarizeVibe, type VibeSummary } from "@/lib/sentiment";
+import { fetchHotPostsFromBrowser } from "@/lib/reddit-client";
 import type { ApiErrorBody, SentimentResult, VibeCheckResponse } from "@/types/reddit";
 import SearchBar from "./SearchBar";
 import VibeGauge from "./VibeGauge";
@@ -19,7 +20,7 @@ export default function VibeCheckApp() {
   const [subreddit, setSubreddit] = useState<string | null>(null);
   const [results, setResults] = useState<SentimentResult[]>([]);
   const [summary, setSummary] = useState<VibeSummary | null>(null);
-  const [source, setSource] = useState<"oauth" | "public" | "demo" | null>(null);
+  const [source, setSource] = useState<"oauth" | "public" | "demo" | "browser" | null>(null);
   const [error, setError] = useState<ApiErrorBody | null>(null);
 
   const heroRef = useRef<HTMLDivElement>(null);
@@ -42,6 +43,24 @@ export default function VibeCheckApp() {
     setStatus("loading");
     setSubreddit(clean);
     setError(null);
+
+    // Try fetching straight from the visitor's own browser first. Reddit
+    // blocks a lot of server/datacenter IPs but generally not ordinary
+    // residential or office ones, so this gets real live data for most
+    // visitors even when our server-side route can't reach Reddit at all.
+    try {
+      const posts = await fetchHotPostsFromBrowser(clean);
+      if (posts.length > 0) {
+        const analyzed = analyzeTitles(posts);
+        setResults(analyzed);
+        setSummary(summarizeVibe(analyzed));
+        setSource("browser");
+        setStatus("success");
+        return;
+      }
+    } catch {
+      // Blocked, CORS-restricted, or errored — fall through to the server route.
+    }
 
     try {
       const res = await fetch(`/api/reddit?subreddit=${encodeURIComponent(clean)}`);
@@ -109,7 +128,13 @@ export default function VibeCheckApp() {
                 <p className="font-display text-2xl italic text-paper">r/{subreddit}</p>
                 <p className="mt-1 font-mono text-[11px] text-paper-dimmer">
                   {summary.total} posts · via{" "}
-                  {source === "oauth" ? "OAuth API" : source === "public" ? "public feed" : "sample data"}
+                  {source === "browser"
+                    ? "live feed"
+                    : source === "oauth"
+                      ? "OAuth API"
+                      : source === "public"
+                        ? "public feed"
+                        : "sample data"}
                 </p>
               </div>
               <DistributionBar summary={summary} />
